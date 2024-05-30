@@ -1,14 +1,12 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Search from "../components/Search";
+import Main from "../components/Main";
+import SideBar from "../components/SideBar";
 
 const Home = () => {
   return (
-    <>
-      <Header />
-      <Search />
-      <Footer />
-    </>
+    <div style={{ display: "flex" }}>
+      <SideBar />
+      <Main />
+    </div>
   );
 };
 
