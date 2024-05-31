@@ -1,7 +1,11 @@
 body {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
+
   display: flex;
   margin: 0;
+}
+
+html {
+  overflow-x: hidden;
 }
