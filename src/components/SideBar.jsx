@@ -4,8 +4,10 @@ import { CiSearch } from "react-icons/ci";
 import { GoHome } from "react-icons/go";
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { RxPerson } from "react-icons/rx";
+import LoginModal from "./LoginModal";
 
 const StyledSideBar = styled.div`
+  box-shadow: 5px 0 5px -5px #8c8c8c;
   position: fixed;
   top: 0;
   left: 0;
@@ -66,6 +68,7 @@ const SideBar = () => {
           <RxPerson className="manu-icon" />
           마이페이지
         </li>
+        <LoginModal />
       </ul>
     </StyledSideBar>
   );
