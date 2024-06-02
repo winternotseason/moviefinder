@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { BiMoviePlay } from "react-icons/bi";
-import { CiSearch } from "react-icons/ci";
 import { GoHome } from "react-icons/go";
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { RxPerson } from "react-icons/rx";
 import LoginModal from "./LoginModal";
+import SearchModal from "./SearchModal";
 
 const StyledSideBar = styled.div`
   box-shadow: 5px 0 5px -5px #8c8c8c;
@@ -25,6 +25,7 @@ const StyledSideBar = styled.div`
     font-size: 1.2rem;
     font-weight: 600;
     margin: 2rem 0;
+    cursor: pointer;
   }
   h2 {
     font-size: 2.3rem;
@@ -53,10 +54,7 @@ const SideBar = () => {
       <BiMoviePlay className="top-icon" />
       <h2>MOVIE FINDER</h2>
       <ul>
-        <li>
-          <CiSearch className="manu-icon" />
-          검색
-        </li>
+        <SearchModal />
         <li>
           <GoHome className="manu-icon" />홈
         </li>

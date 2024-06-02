@@ -13,3 +13,9 @@ export const getPopularMovies = async () => {
   const response = await tmdb.get("/movie/popular");
   return response.data.results;
 };
+
+export const getUpcomingMovies = async () => {
+  const response =  await tmdb.get("/movie/upcoming");
+  console.log(response.data.results)
+  return response.data.results;
+}
