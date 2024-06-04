@@ -3,6 +3,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import kakaoImg from "../assets/kakao.png";
 import facebookImg from "../assets/facebook.png";
+import JoinModal from "./JoinModal";
 
 const LoginButton = styled.button`
   width: 4rem;
@@ -15,6 +16,9 @@ const LoginButton = styled.button`
   &.closebutton {
     margin-left: auto;
     color: #9a9a9a;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -59,11 +63,13 @@ const Login = styled.div`
         background-color: #3b5998;
       }
       &.join {
+        background: none;
         border: 1px solid #939393;
       }
     }
   }
   label {
+    cursor: pointer;
     display: flex;
     align-items: center;
     font-size: 1.3rem;
@@ -115,6 +121,7 @@ const modalStyle = {
 };
 
 const LoginModal = () => {
+  const [loginOpen, setLoginOpen] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -127,24 +134,40 @@ const LoginModal = () => {
           setModalIsOpen(false);
         }}
       >
-        <Login>
-          <h3>로그인</h3>
-          <input type="text" placeholder="아이디" />
-          <input type="password" placeholder="비밀번호" />
-          <input type="text" className="join login" id="join" disabled />
-          <label htmlFor="join" className="join">
-            회원가입
-          </label>
-          <input type="text" className="login kakao" id="kakaologin" disabled />
-          <label htmlFor="kakaologin" className="kakaologin">
-            <img src={kakaoImg} alt="kakaologo" /> 카카오톡으로 로그인
-          </label>
-          <input type="text" className="login facebook" disabled />
-          <label htmlFor="facebooklogin" className="facebooklogin">
-            <img src={facebookImg} alt="kakaologo" />
-            페이스북으로 로그인
-          </label>
-        </Login>
+        {loginOpen ? (
+          <Login>
+            <h3>로그인</h3>
+            <input type="text" placeholder="아이디" />
+            <input type="password" placeholder="비밀번호" />
+            <input
+              type="text"
+              className="join login"
+              id="join"
+              onClick={() => {
+                setLoginOpen(false);
+              }}
+            />
+            <label htmlFor="join" className="join">
+              회원가입
+            </label>
+            <input
+              type="text"
+              className="login kakao"
+              id="kakaologin"
+              disabled
+            />
+            <label htmlFor="kakaologin" className="kakaologin">
+              <img src={kakaoImg} alt="kakaologo" /> 카카오톡으로 로그인
+            </label>
+            <input type="text" className="login facebook" disabled />
+            <label htmlFor="facebooklogin" className="facebooklogin">
+              <img src={facebookImg} alt="kakaologo" />
+              페이스북으로 로그인
+            </label>
+          </Login>
+        ) : (
+          <JoinModal setLoginOpen={setLoginOpen} />
+        )}
       </Modal>
     </li>
   );

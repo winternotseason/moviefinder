@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ChartSlider = styled.div`
+  margin-bottom: 8rem;
   margin-left: 3rem;
   margin-right: 3rem;
   p {
@@ -74,7 +75,6 @@ const ChartSlider = styled.div`
     position: absolute;
     width: 5rem;
     height: 5rem;
-
     cursor: pointer;
     color: #2a2a2a;
     &.right {
@@ -87,7 +87,7 @@ const ChartSlider = styled.div`
       top: 59.5rem;
     }
     &.upcoming {
-      top: 103rem;
+      top: 110rem;
     }
   }
 `;
