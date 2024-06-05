@@ -3,6 +3,8 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { CiSearch } from "react-icons/ci";
 
+import { useNavigate } from "react-router";
+
 const SearchInputContainer = styled.div`
   height: 10rem;
   display: flex;
@@ -12,23 +14,23 @@ const SearchInputContainer = styled.div`
     background-color: #f2f2f2;
     border: none;
     width: 35rem;
-    padding-top:2rem;
-    padding-bottom:2rem;
-    padding-left:3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 3rem;
     padding-right: 7rem;
     height: 2rem;
     border-radius: 20rem;
     font-size: 1.5rem;
     &:focus {
-        border: none;
-        outline: none;
+      border: none;
+      outline: none;
     }
   }
-  .icon{
-      color:#848484;
-      position: absolute;
-      right: 6.5rem;
-      font-size:2.5rem;
+  .icon {
+    color: #848484;
+    position: absolute;
+    right: 6.5rem;
+    font-size: 2.5rem;
   }
 `;
 
@@ -56,6 +58,17 @@ const modalStyle = {
 
 const SearchModal = () => {
   const [modalIsOpen_, setModalIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+
+  const searchMovies = async (e) => {
+    e.preventDefault();
+    if (query) {
+      setModalIsOpen(false);
+      navigate(`/search?query=${query}`);
+    }
+  };
 
   return (
     <li>
@@ -68,10 +81,20 @@ const SearchModal = () => {
           setModalIsOpen(false);
         }}
       >
-        <SearchInputContainer>
-          <input type="text" placeholder="영화를 검색해보세요!" />
-          <CiSearch className="icon" />
-        </SearchInputContainer>
+        <form className="search-form" onSubmit={searchMovies}>
+          <SearchInputContainer>
+            <input
+              type="text"
+              placeholder="영화를 검색해보세요!"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+              required
+            />
+            <CiSearch className="icon" />
+          </SearchInputContainer>
+        </form>
       </Modal>
     </li>
   );

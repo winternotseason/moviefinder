@@ -3,8 +3,8 @@ import { BiMoviePlay } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { RxPerson } from "react-icons/rx";
-import LoginModal from "./LoginModal";
 import SearchModal from "./SearchModal";
+import { Link } from "react-router-dom";
 
 const StyledSideBar = styled.div`
   box-shadow: 5px 0 5px -5px #8c8c8c;
@@ -26,6 +26,10 @@ const StyledSideBar = styled.div`
     font-weight: 600;
     margin: 2rem 0;
     cursor: pointer;
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
   }
   h2 {
     font-size: 2.3rem;
@@ -56,7 +60,10 @@ const SideBar = () => {
       <ul>
         <SearchModal />
         <li>
-          <GoHome className="manu-icon" />홈
+          <GoHome className="manu-icon" />
+          <Link to="/" className="link">
+            홈
+          </Link>
         </li>
         <li>
           <RiShoppingBag2Line className="manu-icon" />
@@ -66,7 +73,6 @@ const SideBar = () => {
           <RxPerson className="manu-icon" />
           마이페이지
         </li>
-        <LoginModal />
       </ul>
     </StyledSideBar>
   );

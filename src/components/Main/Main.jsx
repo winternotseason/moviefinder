@@ -3,7 +3,7 @@ import CommendMovie from "./CommendMovie";
 import PopularChart from "./PopularChart";
 import UpcomingChart from "./UpComingChart";
 
-const StyledMain = styled.div`
+export const StyledMain = styled.div`
   width: 100vw;
   margin-left: 22rem;
 `;

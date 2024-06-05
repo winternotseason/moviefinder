@@ -15,7 +15,15 @@ export const getPopularMovies = async () => {
 };
 
 export const getUpcomingMovies = async () => {
-  const response =  await tmdb.get("/movie/upcoming");
-  console.log(response.data.results)
+  const response = await tmdb.get("/movie/upcoming");
   return response.data.results;
-}
+};
+
+export const getSearchMovies = async (word) => {
+  const response = await tmdb.get("/search/movie", {
+    params: {
+      query: word,
+    },
+  });
+  return response.data.results;
+};
