@@ -66,6 +66,7 @@ const SearchModal = () => {
     e.preventDefault();
     if (query) {
       setModalIsOpen(false);
+      setQuery('')
       navigate(`/search?query=${query}`);
     }
   };
