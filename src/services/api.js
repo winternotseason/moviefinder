@@ -27,3 +27,8 @@ export const getSearchMovies = async (word) => {
   });
   return response.data.results;
 };
+
+export const getMovieDetail = async (id) => {
+  const response = await tmdb.get(`/movie/${id}`);
+  return response.data;
+};

@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledListUl = styled.ul`
+  box-sizing: border-box;
+  min-height: 100vh;
   list-style: none;
+  padding-bottom: 2rem;
   img {
     margin: 0 3rem;
     width: 10rem;
@@ -27,11 +31,13 @@ const StyledListLi = styled.li`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(${(props) => props.bgImg});
+    background-image: url(${(props) => props.bgImg && props.bgSrc});
     background-size: cover;
     background-position: center;
+    background-color: #f2f2f6;
     opacity: 0.3; /* 불투명도 설정 */
     z-index: 1; /* 내용보다 뒤에 배치 */
+    border-radius: 10px;
   }
 
   .flex {
@@ -53,18 +59,29 @@ const ResultsList = ({ results }) => {
     <StyledListUl>
       {results.length > 0 ? (
         results.map((movie) => (
-          <StyledListLi
-            key={movie.id}
-            bgImg={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          >
-            <div className="flex">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-              {movie.title}
-            </div>
-          </StyledListLi>
+          <Link to={`/movie?query=${movie.id}`} key={movie.id}>
+            <StyledListLi
+              key={movie.id}
+              bgImg={movie.poster_path}
+              bgSrc={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            >
+              <div className="flex">
+                {movie.poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                ) : (
+                  <img
+                    src={
+                      "https://www.htmlcsscolor.com/preview/gallery/FBFBFC.png"
+                    }
+                  />
+                )}
+                {movie.title}
+              </div>
+            </StyledListLi>
+          </Link>
         ))
       ) : (
         <li>No results found</li>

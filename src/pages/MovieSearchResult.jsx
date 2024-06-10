@@ -8,6 +8,7 @@ import ResultsList from "../components/ResultsList";
 const StyledSeacrhResult = styled.div`
   width: 100vw;
   margin-left: 26rem;
+
   h1 {
     font-size: 3.5rem;
     font-weight: 600;
