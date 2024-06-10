@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { getUpcomingMovies } from "../../services/api";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const UpcomingChart = () => {
   const [movies, setMovies] = useState([]);
@@ -25,13 +26,18 @@ const UpcomingChart = () => {
     <Chart>
       <p>개봉예정영화 : 대한민국</p>
       <div className="rank" ref={Ref}>
-        <IoIosArrowBack className="left arrow upcoming" onClick={handleClickLeft} />
+        <IoIosArrowBack
+          className="left arrow upcoming"
+          onClick={handleClickLeft}
+        />
         {movies.slice(0, 15).map((movie) => (
           <div key={movie.id} className="movie">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+            <Link to={`/movie?query=${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </Link>
             <p className="rank-title">
               {movie.title.length > 12
                 ? movie.title.slice(0, 12).trim() + "..."
@@ -40,7 +46,10 @@ const UpcomingChart = () => {
             <p className="date">{movie.release_date}</p>
           </div>
         ))}
-        <IoIosArrowForward className="arrow right upcoming" onClick={handleClickRight} />
+        <IoIosArrowForward
+          className="arrow right upcoming"
+          onClick={handleClickRight}
+        />
       </div>
     </Chart>
   );

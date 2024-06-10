@@ -6,8 +6,8 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f5f6f7;
-  height: 10rem;
+  background-color: #e6e6e6;
+  height: 13rem;
   .strong {
     margin-right: 1rem;
     font-size: 1.8rem;

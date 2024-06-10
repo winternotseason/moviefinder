@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { getPopularMovies } from "../../services/api";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const PopularChart = () => {
   const [movies, setMovies] = useState([]);
@@ -26,16 +27,22 @@ const PopularChart = () => {
     <Chart>
       <p>인기차트 : 대한민국</p>
       <div className="rank" ref={Ref}>
-        <IoIosArrowBack className="left arrow popular" onClick={handleClickLeft} />
+        <IoIosArrowBack
+          className="left arrow popular"
+          onClick={handleClickLeft}
+        />
         {movies.slice(0, 15).map((movie, index) => (
           <div key={movie.id} className="movie">
             <div className="rank-number">
               <span>{index + 1}</span>
             </div>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+            <Link to={`/movie?query=${movie.id}`}>
+              {" "}
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </Link>
             <p className="rank-title">
               {movie.title.length > 12
                 ? movie.title.slice(0, 12).trim() + "..."
@@ -47,7 +54,10 @@ const PopularChart = () => {
             </div>
           </div>
         ))}
-        <IoIosArrowForward className="arrow right popular" onClick={handleClickRight} />
+        <IoIosArrowForward
+          className="arrow right popular"
+          onClick={handleClickRight}
+        />
       </div>
     </Chart>
   );

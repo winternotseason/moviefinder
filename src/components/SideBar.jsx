@@ -13,7 +13,7 @@ const StyledSideBar = styled.div`
   left: 0;
   width: 22rem;
   background: #f2f2f6;
-  height: 100vh;
+  min-height: 100%;
   z-index: 999;
   ul {
     padding: 0;

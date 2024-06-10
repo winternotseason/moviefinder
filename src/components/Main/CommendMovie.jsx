@@ -39,7 +39,7 @@ const CommendMain = styled.div`
     }
     p {
       &.title {
-        margin: 0;
+        margin-bottom: 1rem;
         font-weight: 700;
       }
       &.info {
