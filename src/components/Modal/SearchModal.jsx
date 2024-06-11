@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import Modal from "react-modal";
 import { CiSearch } from "react-icons/ci";
-
 import { useNavigate } from "react-router";
 
 const SearchInputContainer = styled.div`

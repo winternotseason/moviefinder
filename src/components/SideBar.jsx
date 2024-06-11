@@ -3,7 +3,7 @@ import { BiMoviePlay } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { RxPerson } from "react-icons/rx";
-import SearchModal from "./SearchModal";
+import SearchModal from "./Modal/SearchModal";
 import { Link } from "react-router-dom";
 
 const StyledSideBar = styled.div`
