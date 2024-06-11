@@ -48,10 +48,6 @@ const PopularChart = () => {
                 ? movie.title.slice(0, 12).trim() + "..."
                 : movie.title}
             </p>
-            <div className="btn">
-              <button>바로예매</button>
-              <button>관심영화</button>
-            </div>
           </div>
         ))}
         <IoIosArrowForward

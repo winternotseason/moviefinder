@@ -106,6 +106,7 @@ const DetailHeader = ({ movie }) => {
       <MovieTicketingnModal
         ticketingnModalOpen={ticketingnModalOpen}
         setTicketingModalOpen={setTicketingModalOpen}
+        movie={movie}
       />
     </StyledDetailHeader>
   );

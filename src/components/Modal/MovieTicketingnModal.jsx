@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import Modal from "react-modal";
 import PropTypes from "prop-types";
+import MovieSeatSelection from "../MovieSeatSelection";
 
 const modalStyle = {
   overlay: {
@@ -27,6 +27,7 @@ const modalStyle = {
 const MovieTicketingnModal = ({
   ticketingnModalOpen,
   setTicketingModalOpen,
+  movie,
 }) => {
   return (
     <Modal
@@ -36,7 +37,7 @@ const MovieTicketingnModal = ({
         setTicketingModalOpen(false);
       }}
     >
-      예매 모달
+      <MovieSeatSelection movie={movie} />
     </Modal>
   );
 };
@@ -44,6 +45,16 @@ const MovieTicketingnModal = ({
 MovieTicketingnModal.propTypes = {
   setTicketingModalOpen: PropTypes.any.isRequired,
   ticketingnModalOpen: PropTypes.any.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    dec: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    drop: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    runtime: PropTypes.number.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
 };
 
 export default MovieTicketingnModal;

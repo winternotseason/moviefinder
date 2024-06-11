@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ChartSlider = styled.div`
-  margin-bottom: 8rem;
+  margin-bottom: 3rem;
   margin-left: 3rem;
   margin-right: 3rem;
   p {
@@ -48,20 +48,7 @@ const ChartSlider = styled.div`
         text-align: center;
         font-size: 2rem;
       }
-      .btn {
-        text-align: center;
-        button {
-          font-size: 1.3rem;
-          background: none;
-          border: 1px solid black;
-          width: 9.5rem;
-          height: 3rem;
-          margin: 0.1rem;
-          border-radius: 8px;
-          font-weight: 700;
-          cursor: pointer;
-        }
-      }
+
       .date {
         text-align: center;
         font-size: 1.3rem;
@@ -87,7 +74,7 @@ const ChartSlider = styled.div`
       top: 59.5rem;
     }
     &.upcoming {
-      top: 110rem;
+      top: 101rem;
     }
   }
 `;
