@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 import ResultsList from "../components/ResultsList";
+import Loading from "../components/Loading";
 
 const StyledSeacrhResult = styled.div`
   width: 100vw;
@@ -19,20 +20,27 @@ const MovieSearchResult = () => {
   const [searchParams] = useSearchParams();
   const [results, setResults] = useState([]);
   const query = searchParams.get("query");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const res = await getSearchMovies(query);
         setResults(res);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
     if (query) {
       fetchData();
     }
   }, [query]);
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <StyledSeacrhResult>

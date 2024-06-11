@@ -140,7 +140,7 @@ const DetailMovie = () => {
               <p>{movie.dec} </p>
               <p className="sub">
                 {movie.date && movie.date.slice(0, 4)} | {movie.genre} |{" "}
-                {movie.runtime}분 | {movie.actors && movie.actors.join(", ")}
+                {movie.runtime}분 | {movie.actors && movie.actors.join(", ")} 외
               </p>
             </div>
           </div>
