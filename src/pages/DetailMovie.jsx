@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import Loading from "../components/Loading";
 import { getMovieCredit, getMovieDetail } from "../services/api";
 
 const StyledDiv = styled.div`
@@ -38,7 +39,7 @@ const StyledHeader = styled.header`
     color: #ffffff;
     position: relative;
     z-index: 10;
-    top: 48rem;
+    top: 45rem;
     h1,
     p {
       margin: 0;
@@ -85,12 +86,14 @@ const StyledHeader = styled.header`
 `;
 
 const DetailMovie = () => {
+  const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
   const [movie, setMovie] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const res = await getMovieDetail(query);
         const credit = await getMovieCredit(query);
         const actors = credit.cast.map((actor) => actor.name);
@@ -108,13 +111,17 @@ const DetailMovie = () => {
         setMovie(movieObj);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
     if (query) {
       fetchData();
     }
   }, [query]);
-
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <StyledDiv>
       <StyledHeader

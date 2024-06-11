@@ -11,7 +11,7 @@ const StyledSeacrhResult = styled.div`
 
   h1 {
     font-size: 3.5rem;
-    font-weight: 600;
+    font-weight: 700;
   }
 `;
 

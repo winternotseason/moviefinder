@@ -84,7 +84,7 @@ const ResultsList = ({ results }) => {
           </Link>
         ))
       ) : (
-        <li>No results found</li>
+        <h3>검색 결과를 찾을 수 없습니다.</h3>
       )}
     </StyledListUl>
   );
