@@ -56,7 +56,7 @@ const StyledSideBar = styled.div`
 const SideBar = () => {
   return (
     <StyledSideBar>
-      <BiMoviePlay className="top-icon" />
+      <Link to="/"><BiMoviePlay className="top-icon" /></Link>
       <h2>MOVIE FINDER</h2>
       <ul>
         <SearchModal />

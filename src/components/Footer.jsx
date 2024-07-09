@@ -29,7 +29,7 @@ const Footer = () => {
     <StyledFooter>
       <p>
         <span className="strong">Developer </span>
-        <span> 황서연 | github | 이메일 | 번호~</span>
+        <span> 황서연 | https://github.com/winternotseason | xitseo@naver.com</span>
       </p>
       <h4>
         회사소개 | 인재채용 | 이용약관 | 개인정보처리방침 | 청소년보호정책 |

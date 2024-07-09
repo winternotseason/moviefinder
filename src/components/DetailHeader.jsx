@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import MovieTicketingnModal from "./Modal/MovieTicketingnModal";
 
 const StyledDetailHeader = styled.header`
   height: 70rem;
@@ -58,6 +56,7 @@ const StyledDetailHeader = styled.header`
         }
       }
       .dec {
+        width: 70rem;
         .sub {
           margin-top: 1rem;
         }
@@ -73,7 +72,6 @@ const StyledDetailHeader = styled.header`
 `;
 
 const DetailHeader = ({ movie }) => {
-  const [ticketingnModalOpen, setTicketingModalOpen] = useState(false);
   return (
     <StyledDetailHeader
       backdrop={`https://image.tmdb.org/t/p/w1280${movie.drop}`}
@@ -82,13 +80,7 @@ const DetailHeader = ({ movie }) => {
         <h1>{movie.title}</h1>
         <div className="flex">
           <div className="btn">
-            <button
-              onClick={() => {
-                setTicketingModalOpen(true);
-              }}
-            >
-              바로예매
-            </button>
+            <button onClick={() => {}}>바로예매</button>
             <button>관심영화</button>
           </div>
           <div className="dec">
@@ -103,11 +95,6 @@ const DetailHeader = ({ movie }) => {
           </div>
         </div>
       </div>
-      <MovieTicketingnModal
-        ticketingnModalOpen={ticketingnModalOpen}
-        setTicketingModalOpen={setTicketingModalOpen}
-        movie={movie}
-      />
     </StyledDetailHeader>
   );
 };
