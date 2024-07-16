@@ -17,12 +17,15 @@ import { Autoplay } from "swiper/modules";
 
 export default function MovieSwiper() {
   const [dailyBoxOffice, setDailyBoxOffice] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     const fetchDailyBoxOffice = async () => {
       const DailyBoxOffice = await getDailyBoxOffice();
       setDailyBoxOffice(DailyBoxOffice);
     };
+    setLoading(false)
     fetchDailyBoxOffice();
   }, []);
 
@@ -34,6 +37,9 @@ export default function MovieSwiper() {
     전체관람가: All,
     "18세관람가(청소년관람불가)": Adult,
   };
+  if(loading){
+    return <h1>로딩중</h1>
+  }
   return (
     <>
       <Swiper
