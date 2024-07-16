@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
 import { getDailyBoxOffice } from "../services/api";
-import gradient from "../assets/gradient-black.png";
-import Twelve from "../assets/12.svg";
-import Fifteen from "../assets/fifteen.svg";
-import All from "../assets/All.svg";
-import Adult from "../assets/adult.svg";
+import gradient from "/gradient-black.png";
+import Twelve from "/12.svg";
+import Fifteen from "/fifteen.svg";
+import All from "/All.svg";
+import Adult from "/adult.svg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";

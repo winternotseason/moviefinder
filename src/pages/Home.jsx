@@ -8,7 +8,7 @@ const Home = () => {
       <div className="w-full flex flex-col justify-center items-center">
         <div className="w-full">
           <ReactPlayer
-            url="/src/assets/mainvideo.mp4"
+            url='/videos/mainvideo.mp4'
             muted
             width="100%"
             height="100%"
