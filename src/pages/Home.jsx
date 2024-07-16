@@ -21,7 +21,7 @@ const Home = () => {
             }}
           />
           <img src={gradient} className="w-full absolute top-0 left-0 h-full" />
-          <div className="absolute top-[60%] left-[15%]  md:left-[10%] text-white z-50">
+          <div className="absolute top-[60%] left-[25%]  md:left-[10%] text-white z-50">
             <p className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">파묘</p>
             <p className="text-sm md:text-2xl">
               새로운 맛의 <span className="font-semibold">K 오컬트</span> 탄생,
