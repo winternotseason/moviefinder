@@ -1,5 +1,5 @@
 import MovieSwiper from "../components/MovieSwiper";
-import gradient from "/main-black-gradient.png";
+import gradient from "/banner-gradient.png";
 import movieBannerImg from "/main-banner.jpeg";
 import ReactPlayer from "react-player";
 import { useState } from "react";
@@ -20,8 +20,8 @@ const Home = () => {
               setMovieEnd(true);
             }}
           />
-          <img src={gradient} className="w-full absolute top-0 left-0 h-full" />
-          <div className="absolute top-[60%] left-[25%]  md:left-[10%] text-white z-50">
+          <img src={gradient} className="w-full h-full absolute top-0 left-0 z-20" />
+          <div className="absolute top-[60%] left-[25%]  md:left-[10%] text-white z-30">
             <p className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">파묘</p>
             <p className="text-sm md:text-2xl">
               새로운 맛의 <span className="font-semibold">K 오컬트</span> 탄생,

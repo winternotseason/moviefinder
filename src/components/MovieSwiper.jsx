@@ -20,12 +20,12 @@ export default function MovieSwiper() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchDailyBoxOffice = async () => {
       const DailyBoxOffice = await getDailyBoxOffice();
       setDailyBoxOffice(DailyBoxOffice);
     };
-    setLoading(false)
+    setLoading(false);
     fetchDailyBoxOffice();
   }, []);
 
@@ -37,8 +37,8 @@ export default function MovieSwiper() {
     전체관람가: All,
     "18세관람가(청소년관람불가)": Adult,
   };
-  if(loading){
-    return <h1>로딩중</h1>
+  if (loading) {
+    return <h1>로딩중</h1>;
   }
   return (
     <>
@@ -78,14 +78,14 @@ export default function MovieSwiper() {
                   src={gradient}
                   alt="gradient"
                 />
+                <p className="absolute z-20 bottom-2 left-2 text-5xl italic text-white font-medium">
+                  {movie.rank}
+                </p>
+                <p className="absolute z-20 bottom-2 right-3 text-sm text-white">
+                  예매율 {movie.booking_rate}%
+                </p>
               </div>
 
-              <p className="absolute z-20 bottom-14 left-2 text-5xl italic text-white font-medium">
-                {movie.rank}
-              </p>
-              <p className="absolute z-20 bottom-14 right-4 text-sm text-white">
-                예매율 {movie.booking_rate}%
-              </p>
               <div className="flex items-center mt-2 justify-center">
                 <div className="w-4 h-4">
                   <img src={ratingToSvg[movie.rating]} />
