@@ -20,7 +20,10 @@ const Home = () => {
               setMovieEnd(true);
             }}
           />
-          <img src={gradient} className="w-full h-full absolute top-0 left-0 z-20" />
+          <img
+            src={gradient}
+            className="w-full h-full absolute top-0 left-0 z-20"
+          />
           <div className="absolute top-[60%] left-[25%]  md:left-[10%] text-white z-30">
             <p className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">파묘</p>
             <p className="text-sm md:text-2xl">
@@ -28,18 +31,24 @@ const Home = () => {
               올해 첫 천만 영화!
             </p>
             <p className="text-sm md:text-2xl">
-            “전부 잘 알 거야… 묘 하나 잘못 건들면 어떻게 되는지”
+              “전부 잘 알 거야… 묘 하나 잘못 건들면 어떻게 되는지”
             </p>
             <p className="text-xs font-ight md:text-sm mt-1 md:mt-2">
               장재헌 감독, 최민식, 김고은, 유해진, 이도헌 외
             </p>
           </div>
           {movieEnd && (
-            <img src={movieBannerImg} className="w-full absolute top-0 animate-fade" />
+            <img
+              src={movieBannerImg}
+              className="w-full absolute top-0 animate-fade"
+            />
           )}
         </div>{" "}
         {/* 영화 슬라이더 */}
         <div className="w-full p-5 max-w-[70rem]">
+          <div className="flex  text-sm mb-2 font-semibold">
+            <p className="text-white mr-2">일간</p> <p className="text-white/60">주간</p>
+          </div>
           <MovieSwiper />
         </div>
       </div>
