@@ -22,7 +22,7 @@ export const getDailyBoxOffice = async () => {
   try {
     // kobis 영화 데이터
     const kobis_response = await axios.get(
-      "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json",
+      "//www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json",
       {
         params: {
           key: import.meta.env.VITE_KOBIS_API_KEY,
@@ -45,7 +45,7 @@ export const getDailyBoxOffice = async () => {
     const requests = kobis_response.data.boxOfficeResult.dailyBoxOfficeList.map(
       async (movie) => {
         const response = await axios.get(
-          `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+          `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
             import.meta.env.VITE_KMDB_API_KEY
           }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
         );
