@@ -74,13 +74,13 @@ export default function MovieSwiper() {
                 />
               </div>
 
-              <p className="absolute z-20 bottom-10 left-2 text-5xl italic text-white font-medium">
+              <p className="absolute z-20 bottom-14 left-2 text-5xl italic text-white font-medium">
                 {movie.rank}
               </p>
-              <p className="absolute z-20 bottom-10 right-2 text-xs text-white">
+              <p className="absolute z-20 bottom-14 right-4 text-sm text-white">
                 예매율 {movie.booking_rate}%
               </p>
-              <div className="flex items-center mt-2">
+              <div className="flex items-center mt-2 justify-center">
                 <div className="w-4 h-4">
                   <img src={ratingToSvg[movie.rating]} />
                 </div>
