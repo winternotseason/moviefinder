@@ -7,7 +7,7 @@ const Home = () => {
   const [movieEnd, setMovieEnd] = useState(false);
   return (
     <div className="w-full h-full">
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center bg-black">
         <div className="relative w-full max-w-[90rem] min-w-[40rem]">
           <ReactPlayer
             url="/videos/mainvideo.mp4"

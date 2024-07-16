@@ -90,7 +90,7 @@ export default function MovieSwiper() {
                 <div className="w-4 h-4">
                   <img src={ratingToSvg[movie.rating]} />
                 </div>
-                <p className="font-semibold text-base ml-1">
+                <p className="font-semibold text-base ml-1 text-white">
                   {movie.movieNm.length > 10
                     ? `${movie.movieNm.slice(0, 11)}...`
                     : movie.movieNm}
