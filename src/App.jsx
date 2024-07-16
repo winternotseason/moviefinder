@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Notfound from "./pages/Notfound";
 import Home from "./pages/Home";
+import './index.css'
 
 import Layout from "./pages/Layout";
 

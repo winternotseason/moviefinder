@@ -1,38 +1,13 @@
-import { useEffect, useState } from "react";
-import { getDailyBoxOffice } from "../services/api";
+import MovieSwiper from "../components/MovieSwiper";
 
 const Home = () => {
-  const [dailyBoxOffice, setDailyBoxOffice] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchDailyBoxOffice = async () => {
-      setLoading(true);
-      const DailyBoxOffice = await getDailyBoxOffice();
-      setDailyBoxOffice(DailyBoxOffice);
-      setLoading(false);
-    };
-    fetchDailyBoxOffice();
-  }, []);
-
-  if (loading) {
-    return <h1>로딩중입니다...</h1>;
-  }
-
   return (
-    <div>
-      <div>
-        <ul className="list-none">
-          {dailyBoxOffice.map((movie) => (
-            <li key={movie.movieNm}>
-              <div>
-                <img src={movie.posters} alt="poster" />
-              </div>
-              <div>
-                {movie.rating} {movie.movieNm} {movie.rank} {movie.booking_rate}
-              </div>
-            </li>
-          ))}
-        </ul>
+    <div className="w-full h-full">
+      <div className="w-full flex justify-center">
+        {/* 영화 슬라이더 */}
+        <div className="w-full p-5 max-w-[70rem]">
+          <MovieSwiper />
+        </div>
       </div>
     </div>
   );

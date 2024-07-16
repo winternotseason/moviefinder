@@ -61,6 +61,8 @@ export const getDailyBoxOffice = async () => {
       return {
         posters: movie.posters.split("|")[0],
         rating: movie.rating,
+        nation : movie.nation,
+        runtime: movie.runtime
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -69,6 +71,8 @@ export const getDailyBoxOffice = async () => {
       return {
         posters: kmdb.posters,
         rating: kmdb.rating,
+        nation:kmdb.nation,
+        runtime: kmdb.runtime,
         movieNm: kobis.movieNm,
         rank: kobis.rank,
         booking_rate: kobis.booking_rate,
