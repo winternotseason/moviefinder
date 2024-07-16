@@ -21,17 +21,16 @@ const Home = () => {
             }}
           />
           <img src={gradient} className="w-full absolute top-0 left-0 h-full" />
-          <div className="absolute top-1/2 md:top-2/4 left-1/4 md:left-20 text-white z-50">
+          <div className="absolute top-[60%] left-[15%]  md:left-[10%] text-white z-50">
             <p className="text-3xl md:text-5xl font-bold mb-2 md:mb-4">파묘</p>
-            <p className="text-xs md:text-2xl font-light">
+            <p className="text-sm md:text-2xl">
               새로운 맛의 <span className="font-semibold">K 오컬트</span> 탄생,
               올해 첫 천만 영화!
             </p>
-            <p className="text-xs md:text-2xl font-light">
-              수상한 묘를 이장한 풍수사와 장의사, 무속인들에게 벌어지는 기이한
-              사건
+            <p className="text-sm md:text-2xl">
+            “전부 잘 알 거야… 묘 하나 잘못 건들면 어떻게 되는지”
             </p>
-            <p className="text-xs font-extralight md:text-sm mt-1 md:mt-2">
+            <p className="text-xs font-ight md:text-sm mt-1 md:mt-2">
               장재헌 감독, 최민식, 김고은, 유해진, 이도헌 외
             </p>
           </div>
