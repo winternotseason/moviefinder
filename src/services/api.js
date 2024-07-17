@@ -198,7 +198,7 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
   // 영화이름과 개봉일을 받아서 영화 정보들을 불러온다.
   try {
     const res = await axios.get(
-      `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+      `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
         import.meta.env.VITE_KMDB_API_KEY
       }&releaseDts=${releaseDt}&title=${movieMame}`
     );

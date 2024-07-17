@@ -42,7 +42,7 @@ const Detail = () => {
     <div>
       {/* 헤더 */}
       <div className="w-full h-72 bg-black/100 flex items-end">
-        <div className="flex mb-4 z-50">
+        <div className="flex mb-8 z-50">
           <div className="w-24 ml-4">
             <img src={`${movieArr.posters[0]}`} className="w-full" />
           </div>
