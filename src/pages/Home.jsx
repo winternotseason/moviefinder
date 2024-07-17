@@ -1,10 +1,12 @@
-import MovieSwiper from "../components/MovieSwiper";
 import gradient from "/banner-gradient.png";
 import movieBannerImg from "/main-banner.jpeg";
 import ReactPlayer from "react-player";
 import { useState } from "react";
+import DailyBoxOfficeSlider from "../components/DailyBoxOfficeSlider";
+import WeeklyBoxOfficeSlider from "../components/WeeklyBoxOfficeSlider";
 const Home = () => {
   const [movieEnd, setMovieEnd] = useState(false);
+  const [onDaily, setOnDaily] = useState(true);
   return (
     <div className="w-full h-full">
       <div className="w-full flex flex-col justify-center items-center bg-black">
@@ -48,12 +50,30 @@ const Home = () => {
           )}
         </div>{" "}
         {/* 영화 슬라이더 */}
-        <div className="w-full p-5 max-w-[70rem]">
+        <div className="relative w-full p-5 max-w-[70rem] min-h-[30rem]">
           <div className="flex  text-sm mb-2 font-semibold">
-            <p className="text-white mr-2">일간</p>{" "}
-            <p className="text-white/60">주간</p>
+            <p
+              className={`${
+                onDaily ? "text-white" : "text-white/60"
+              } mr-2 cursor-pointer`}
+              onClick={() => {
+                setOnDaily(true);
+              }}
+            >
+              일간
+            </p>
+            <p
+              className={`${
+                onDaily ? "text-white/60" : "text-white"
+              } cursor-pointer`}
+              onClick={() => {
+                setOnDaily(false);
+              }}
+            >
+              주간
+            </p>
           </div>
-          <MovieSwiper />
+          {onDaily ? <DailyBoxOfficeSlider /> : <WeeklyBoxOfficeSlider />}
         </div>
       </div>
     </div>

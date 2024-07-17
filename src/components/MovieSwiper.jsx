@@ -1,6 +1,5 @@
+import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useState } from "react";
-import { getDailyBoxOffice } from "../services/api";
 import gradient from "/gradient-black.png";
 import Twelve from "/12.svg";
 import Fifteen from "/fifteen.svg";
@@ -15,20 +14,7 @@ import "./styles.css";
 // import required modules
 import { Autoplay } from "swiper/modules";
 
-export default function MovieSwiper() {
-  const [dailyBoxOffice, setDailyBoxOffice] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchDailyBoxOffice = async () => {
-      const DailyBoxOffice = await getDailyBoxOffice();
-      setDailyBoxOffice(DailyBoxOffice);
-    };
-    setLoading(false);
-    fetchDailyBoxOffice();
-  }, []);
-
+export default function MovieSwiper({ movies }) {
   const ratingToSvg = {
     "12세관람가": Twelve,
     "12세이상관람가": Twelve,
@@ -36,10 +22,9 @@ export default function MovieSwiper() {
     "15세관람가": Fifteen,
     전체관람가: All,
     "18세관람가(청소년관람불가)": Adult,
+    "청소년관람불가": Adult,
   };
-  if (loading) {
-    return <h1>로딩중</h1>;
-  }
+
   return (
     <>
       <Swiper
@@ -68,7 +53,7 @@ export default function MovieSwiper() {
         modules={[Autoplay]}
         className="mySwiper"
       >
-        {dailyBoxOffice.map((movie) => (
+        {movies.map((movie) => (
           <SwiperSlide key={movie.movieNm}>
             <div>
               <div className="relative rounded-lg overflow-hidden w-full h-full">
@@ -90,7 +75,7 @@ export default function MovieSwiper() {
                 <div className="w-4 h-4">
                   <img src={ratingToSvg[movie.rating]} />
                 </div>
-                <p className="font-semibold text-base ml-1 text-white">
+                <p className="font-semibold text-sm ml-1 text-white">
                   {movie.movieNm.length > 10
                     ? `${movie.movieNm.slice(0, 11)}...`
                     : movie.movieNm}
@@ -108,3 +93,7 @@ export default function MovieSwiper() {
     </>
   );
 }
+
+MovieSwiper.propTypes = {
+  movies: PropTypes.array.isRequired,
+};

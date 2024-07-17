@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getDailyBoxOffice = async () => {
+export const kobisDailyBoxOffice = async () => {
   // 오늘 날짜 객체 생성
   let today = new Date();
 
@@ -16,7 +16,6 @@ export const getDailyBoxOffice = async () => {
   if (day < 10) {
     day = "0" + day;
   }
-
   // YYYYMMDD 형식으로 문자열 조합
   let formattedDate = year + "" + month + "" + day;
   try {
@@ -30,28 +29,79 @@ export const getDailyBoxOffice = async () => {
         },
       }
     );
+    return kobis_response.data.boxOfficeResult.dailyBoxOfficeList;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-    // kobis에서 영화명, 랭크, 예매율만 뽑아오기
-    const kobis_arr =
-      kobis_response.data.boxOfficeResult.dailyBoxOfficeList.map((movie) => {
-        return {
-          movieNm: movie.movieNm,
-          rank: movie.rank,
-          booking_rate: movie.salesShare,
-        };
-      });
-    console.log('?', kobis_arr);
 
-    const requests = kobis_response.data.boxOfficeResult.dailyBoxOfficeList.map(
-      async (movie) => {
-        const response = await axios.get(
-          `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
-            import.meta.env.VITE_KMDB_API_KEY
-          }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
-        );
-        return response;
+export const kobisWeeklyBoxOffice = async () => {
+  // 오늘 날짜 객체 생성
+  let today = new Date();
+
+  // 오늘의 요일 인덱스
+  const dayIndex = today.getDay();
+
+  // 만약 오늘이 일요일이면, 저번 일요일은 7일 전임
+  const daysSinceLastSunday = dayIndex === 0 ? 7 : dayIndex;
+
+  const lastSunday = new Date(today);
+  lastSunday.setDate(today.getDate() - daysSinceLastSunday);
+
+  // YYYYMMDD 형태로 변환
+  let year = lastSunday.getFullYear();
+  let month = lastSunday.getMonth() + 1;
+  let day = lastSunday.getDate();
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  // 저번주 일요일 날짜의 YYYYMMDD
+  let formattedDate = year + "" + month + "" + day;
+
+  try {
+    // kobis 영화 데이터
+    const kobis_response = await axios.get(
+      "//www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json",
+      {
+        params: {
+          key: import.meta.env.VITE_KOBIS_API_KEY,
+          targetDt: formattedDate,
+        },
       }
     );
+    return kobis_response.data.boxOfficeResult.weeklyBoxOfficeList;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+export const getDailyBoxOffice = async () => {
+  try {
+    const kobis_data = await kobisDailyBoxOffice();
+    // kobis에서 영화명, 랭크, 예매율만 뽑아오기
+    const kobis_arr = kobis_data.map((movie) => {
+      return {
+        movieNm: movie.movieNm,
+        rank: movie.rank,
+        booking_rate: movie.salesShare,
+      };
+    });
+    console.log("?", kobis_arr);
+
+    const requests = kobis_data.map(async (movie) => {
+      const response = await axios.get(
+        `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+          import.meta.env.VITE_KMDB_API_KEY
+        }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
+      );
+      return response;
+    });
 
     const response = await Promise.all(requests);
     const resArr = response.map((res) => res.data.Data[0].Result[0]);
@@ -61,8 +111,8 @@ export const getDailyBoxOffice = async () => {
       return {
         posters: movie.posters.split("|")[0],
         rating: movie.rating,
-        nation : movie.nation,
-        runtime: movie.runtime
+        nation: movie.nation,
+        runtime: movie.runtime,
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -71,14 +121,70 @@ export const getDailyBoxOffice = async () => {
       return {
         posters: kmdb.posters,
         rating: kmdb.rating,
-        nation:kmdb.nation,
+        nation: kmdb.nation,
         runtime: kmdb.runtime,
         movieNm: kobis.movieNm,
         rank: kobis.rank,
         booking_rate: kobis.booking_rate,
       };
     });
-    console.log('왜?', boxOfficeArr)
+    console.log("왜?", boxOfficeArr);
+    return boxOfficeArr;
+  } catch (err) {
+    console.error(err);
+  }
+  return;
+};
+
+
+export const getWeeklyBoxOffice = async () => {
+  try {
+    const kobis_data = await kobisWeeklyBoxOffice();
+    // kobis에서 영화명, 랭크, 예매율만 뽑아오기
+    const kobis_arr = kobis_data.map((movie) => {
+      return {
+        movieNm: movie.movieNm,
+        rank: movie.rank,
+        booking_rate: movie.salesShare,
+      };
+    });
+    console.log("?", kobis_arr);
+
+    const requests = kobis_data.map(async (movie) => {
+      const response = await axios.get(
+        `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+          import.meta.env.VITE_KMDB_API_KEY
+        }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
+      );
+      return response;
+    });
+
+    const response = await Promise.all(requests);
+    const resArr = response.map((res) => res.data.Data[0].Result[0]);
+
+    // 대표 포스터, @@ 관람가 출력
+    const kmdb_arr = resArr.map((movie) => {
+      return {
+        posters: movie.posters.split("|")[0],
+        rating: movie.rating,
+        nation: movie.nation,
+        runtime: movie.runtime,
+      };
+    });
+    // kobis 객체와 kmdb 객체 통합
+    const boxOfficeArr = kmdb_arr.map((kmdb, index) => {
+      const kobis = kobis_arr[index];
+      return {
+        posters: kmdb.posters,
+        rating: kmdb.rating,
+        nation: kmdb.nation,
+        runtime: kmdb.runtime,
+        movieNm: kobis.movieNm,
+        rank: kobis.rank,
+        booking_rate: kobis.booking_rate,
+      };
+    });
+    console.log("왜?", boxOfficeArr);
     return boxOfficeArr;
   } catch (err) {
     console.error(err);
