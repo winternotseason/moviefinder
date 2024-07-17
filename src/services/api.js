@@ -35,7 +35,6 @@ export const kobisDailyBoxOffice = async () => {
   }
 };
 
-
 export const kobisWeeklyBoxOffice = async () => {
   // 오늘 날짜 객체 생성
   let today = new Date();
@@ -80,7 +79,6 @@ export const kobisWeeklyBoxOffice = async () => {
   }
 };
 
-
 export const getDailyBoxOffice = async () => {
   try {
     const kobis_data = await kobisDailyBoxOffice();
@@ -113,6 +111,7 @@ export const getDailyBoxOffice = async () => {
         rating: movie.rating,
         nation: movie.nation,
         runtime: movie.runtime,
+        repRlsDate : movie.repRlsDate
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -123,6 +122,7 @@ export const getDailyBoxOffice = async () => {
         rating: kmdb.rating,
         nation: kmdb.nation,
         runtime: kmdb.runtime,
+        repRlsDate : kmdb.repRlsDate,
         movieNm: kobis.movieNm,
         rank: kobis.rank,
         booking_rate: kobis.booking_rate,
@@ -135,7 +135,6 @@ export const getDailyBoxOffice = async () => {
   }
   return;
 };
-
 
 export const getWeeklyBoxOffice = async () => {
   try {
@@ -168,7 +167,8 @@ export const getWeeklyBoxOffice = async () => {
         posters: movie.posters.split("|")[0],
         rating: movie.rating,
         nation: movie.nation,
-        runtime: movie.runtime,
+        runtime: movie.ratings.rating[0].runtime,
+        repRlsDate : movie.repRlsDate
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -179,6 +179,7 @@ export const getWeeklyBoxOffice = async () => {
         rating: kmdb.rating,
         nation: kmdb.nation,
         runtime: kmdb.runtime,
+        repRlsDate: kmdb.repRlsDate,
         movieNm: kobis.movieNm,
         rank: kobis.rank,
         booking_rate: kobis.booking_rate,
@@ -190,4 +191,45 @@ export const getWeeklyBoxOffice = async () => {
     console.error(err);
   }
   return;
+};
+
+export const getDetailMovieInfo = async (movieMame, releaseDt) => {
+  console.log(movieMame, releaseDt);
+  // 영화이름과 개봉일을 받아서 영화 정보들을 불러온다.
+  try {
+    const res = await axios.get(
+      `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+        import.meta.env.VITE_KMDB_API_KEY
+      }&releaseDts=${releaseDt}&title=${movieMame}`
+    );
+    const kmdb_arr = res.data.Data[0].Result[0];
+    const beforeClearTitle = kmdb_arr.title;
+    // 타이틀 정규표현식으로 깔끔하게 만들기
+    const title_remove_HS = beforeClearTitle.replace(/\s{1}!HS\s{1}/g, "");
+    const title_remove_HE = title_remove_HS.replace(/\s{1}!HE\s{1}/g, "");
+    const title = title_remove_HE.trim();
+    const posters = kmdb_arr.posters.split("|");
+    const stlls = kmdb_arr.stlls.split("|");
+    const titleEng = kmdb_arr.titleEng;
+    const releaseDate = kmdb_arr.repRlsDate;
+    const runtime = kmdb_arr.ratings.rating[0].runtime.split("|")[0]
+    const company = kmdb_arr.company;
+    const genre = kmdb_arr.genre;
+    const nation = kmdb_arr.nation;
+    const type = kmdb_arr.type;
+    return {
+      title,
+      posters,
+      stlls,
+      titleEng,
+      releaseDate,
+      runtime,
+      company,
+      nation,
+      type,
+      genre
+    };
+  } catch (error) {
+    console.error(error);
+  }
 };

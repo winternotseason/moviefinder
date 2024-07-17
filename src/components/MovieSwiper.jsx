@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import gradient from "/gradient-black.png";
 import Twelve from "/12.svg";
@@ -22,9 +23,9 @@ export default function MovieSwiper({ movies }) {
     "15세관람가": Fifteen,
     전체관람가: All,
     "18세관람가(청소년관람불가)": Adult,
-    "청소년관람불가": Adult,
+    청소년관람불가: Adult,
   };
-
+  console.log(movies);
   return (
     <>
       <Swiper
@@ -69,6 +70,14 @@ export default function MovieSwiper({ movies }) {
                 <p className="absolute z-20 bottom-2 right-3 text-sm text-white">
                   예매율 {movie.booking_rate}%
                 </p>
+                <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 bg-black/70 z-50 opacity-0 hover:opacity-100">
+                  <Link
+                    to={`/detail?moviename=${movie.movieNm}&release=${movie.repRlsDate}`}
+                    className="w-24 border-[1px] border-white/70 text-white/70 hover:border-white hover:text-white py-2 rounded-3xl cursor-pointer"
+                  >
+                    상세보기
+                  </Link>
+                </div>
               </div>
 
               <div className="flex items-center mt-2 justify-center">
