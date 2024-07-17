@@ -108,7 +108,7 @@ const Detail = () => {
                   </p>
                 )}
               </div>
-              <p className="text-black/90">
+              <p className="text-black/90 text-xs md:text-base">
                 {kr ? movieArr.plots[0].plotText : movieArr.plots[1].plotText}
               </p>
             </>
@@ -116,12 +116,12 @@ const Detail = () => {
           {topContent === "감독/출연" && (
             <div>
               <div>
-                <p className="mb-1 font-semibold">감독</p>
-                <p className="text-sm">{movieArr.director}</p>
+                <p className="mb-1 text-xs md:text-base font-semibold">감독</p>
+                <p className="text-xs md:text-base">{movieArr.director}</p>
               </div>
               <div className="mt-5">
-                <p className="mb-1 font-semibold">출연</p>
-                <div className="flex space-x-1 w-full text-sm overflow-x-scroll">
+                <p className="mb-1 font-semibold text-xs md:text-base">출연</p>
+                <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll overflow-y-hidden pb-2">
                   {movieArr.actors.map((actor, index) => (
                     <p key={actor.actorNm} className="whitespace-nowrap">
                       {actor.actorNm}
