@@ -50,7 +50,7 @@ const Home = () => {
         </div>{" "}
         {/* 영화 슬라이더 */}
         <div className="relative w-full p-5 max-w-[70rem] min-h-[30rem]">
-          <div className="flex  text-sm mb-2 font-semibold">
+          <div className="flex  text-sm mb-5 font-semibold">
             <p
               className={`${
                 onDaily ? "text-white" : "text-white/60"

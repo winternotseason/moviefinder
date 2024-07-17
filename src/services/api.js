@@ -111,7 +111,7 @@ export const getDailyBoxOffice = async () => {
         rating: movie.rating,
         nation: movie.nation,
         runtime: movie.runtime,
-        repRlsDate : movie.repRlsDate
+        repRlsDate: movie.repRlsDate,
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -122,7 +122,7 @@ export const getDailyBoxOffice = async () => {
         rating: kmdb.rating,
         nation: kmdb.nation,
         runtime: kmdb.runtime,
-        repRlsDate : kmdb.repRlsDate,
+        repRlsDate: kmdb.repRlsDate,
         movieNm: kobis.movieNm,
         rank: kobis.rank,
         booking_rate: kobis.booking_rate,
@@ -168,7 +168,7 @@ export const getWeeklyBoxOffice = async () => {
         rating: movie.rating,
         nation: movie.nation,
         runtime: movie.ratings.rating[0].runtime,
-        repRlsDate : movie.repRlsDate
+        repRlsDate: movie.repRlsDate,
       };
     });
     // kobis 객체와 kmdb 객체 통합
@@ -212,11 +212,13 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
     const stlls = kmdb_arr.stlls.split("|");
     const titleEng = kmdb_arr.titleEng;
     const releaseDate = kmdb_arr.repRlsDate;
-    const runtime = kmdb_arr.ratings.rating[0].runtime.split("|")[0]
+    const runtime = kmdb_arr.ratings.rating[0].runtime.split("|")[0];
     const company = kmdb_arr.company;
     const genre = kmdb_arr.genre;
     const nation = kmdb_arr.nation;
-    const type = kmdb_arr.type;
+    const rating = kmdb_arr.rating;
+    const plots = kmdb_arr.plots.plot
+
     return {
       title,
       posters,
@@ -226,8 +228,9 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
       runtime,
       company,
       nation,
-      type,
-      genre
+      rating,
+      genre,
+      plots
     };
   } catch (error) {
     console.error(error);

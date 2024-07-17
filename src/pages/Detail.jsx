@@ -1,6 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDetailMovieInfo } from "../services/api";
+import DetailPageHeader from "../components/DetailPageHeader";
+import TopContentLi from "../components/TopContentLi";
+
 const Detail = () => {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -12,9 +15,13 @@ const Detail = () => {
     genre: "",
     company: "",
     title: "",
+    plots: [{ plotText: "" }, { plotText: "" }],
   });
+  const [kr, setKr] = useState(true);
+  const [topContent, setTopContent] = useState("기본소개");
   const movieName = searchParams.get("moviename");
   const releaseDt = searchParams.get("release");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,42 +46,73 @@ const Detail = () => {
   }
 
   return (
-    <div className="w-full ">
+    <div className="w-full flex flex-col items-center">
       {/* 헤더 */}
-      <div className="w-full h-72 md:h-[40rem] bg-black/100 flex justify-center items-end">
-        <div className="flex mb-8 w-full md:max-w-[70rem]">
-          <div className="w-24 md:w-60 ml-4">
-            <img src={`${movieArr.posters[0]}`} className="w-full" />
-          </div>
-
-          <div className="text-white flex flex-col self-end w-56 md:w-96 ml-4 md:ml-10">
-            <div>
-              <p className="text-base md:text-3xl font-bold">
-                {movieArr.title}
-              </p>
-              <p className="text-xs md:text-base font-extralight text-white/60">
-                {movieArr.titleEng}
-              </p>
-            </div>
-            <div className="mt-2 text-[0.7rem] md:text-sm flex flex-col font-medium text-white/80">
-              <div className="flex">
-                <p>
-                  {movieArr.releaseDate.slice(0, 4) +
-                    "." +
-                    movieArr.releaseDate.slice(4, 6) +
-                    "." +
-                    movieArr.releaseDate.slice(6, 8)}{" "}
+      <DetailPageHeader movieArr={movieArr} />
+      <div className="w-full md:max-w-[70rem]">
+        <div>
+          <ul className="w-full flex border-b-[1px] font-light">
+            <TopContentLi
+              topContent={topContent}
+              setTopContent={setTopContent}
+              link="기본소개"
+            >
+              기본소개
+            </TopContentLi>
+            <TopContentLi
+              topContent={topContent}
+              setTopContent={setTopContent}
+              link="수상내역"
+            >
+              수상내역
+            </TopContentLi>
+            <TopContentLi
+              topContent={topContent}
+              setTopContent={setTopContent}
+              link="감독/출연"
+            >
+              감독/출연
+            </TopContentLi>
+          </ul>
+        </div>
+        <div className="p-4 h-96 border-b-[1px]">
+          {topContent === "기본소개" && (
+            <>
+              <div className="flex space-x-2 text-black/60 mb-3 text-sm">
+                <p
+                  onClick={() => {
+                    setKr(true);
+                  }}
+                  className={
+                    kr
+                      ? `text-black cursor-pointer font-semibold`
+                      : "text-black/60 cursor-pointer"
+                  }
+                >
+                  한국어
                 </p>
-                <p className="ml-1">{movieArr.runtime}분</p>
+                {movieArr.plots.length === 2 && (
+                  <p
+                    onClick={() => {
+                      setKr(false);
+                    }}
+                    className={
+                      kr
+                        ? `text-black/60 cursor-pointer`
+                        : "text-black cursor-pointer font-semibold"
+                    }
+                  >
+                    ENG
+                  </p>
+                )}
               </div>
-              <div className=" text-white/80">
-                <p className="mr-1">{movieArr.genre}</p>
-              </div>{" "}
-              <div className=" text-white/80">
-                <p>{movieArr.company}</p>
-              </div>{" "}
-            </div>
-          </div>
+              <p className="text-black/90">
+                {kr ? movieArr.plots[0].plotText : movieArr.plots[1].plotText}
+              </p>
+            </>
+          )}{" "}
+          {topContent === "감독/출연" && <p>감독출연</p>}
+          {topContent === "수상내역" && <p>수상내역</p>}
         </div>
       </div>
     </div>
