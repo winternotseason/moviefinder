@@ -79,7 +79,7 @@ const Detail = () => {
             </TopContentLi>
           </ul>
         </div>
-        <div className="p-4 h-96 border-b-[1px]">
+        <div className="p-4 min-h-60 border-b-[1px]">
           {topContent === "기본소개" && (
             <>
               <div className="flex space-x-2 text-black/60 mb-3 text-sm">
@@ -123,7 +123,7 @@ const Detail = () => {
               </div>
               <div className="mt-5">
                 <p className="mb-1 font-semibold text-xs md:text-base">출연</p>
-                <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
+                <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-auto pb-2">
                   {movieArr.actors.map((actor, index) => (
                     <p key={actor.actorNm} className="whitespace-nowrap">
                       {actor.actorNm}
@@ -137,7 +137,7 @@ const Detail = () => {
           )}
           {topContent === "수상내역" && (
             <div className="text-sm md:text-base space-y-5 md:space-y-10 mt-2">
-              {movieArr.awards.length > 0 &&
+              {movieArr.awards[0] !== "" ? (
                 movieArr.awards.map((award) => (
                   <p
                     className="pl-2 border-l-[1px] border-black/40 font-medium"
@@ -145,7 +145,10 @@ const Detail = () => {
                   >
                     {award}
                   </p>
-                ))}
+                ))
+              ) : (
+                <h1>수상 내역이 없습니다</h1>
+              )}
             </div>
           )}
         </div>
@@ -167,15 +170,12 @@ const Detail = () => {
         </BottomContentLi>
       </ul>
       <div className="p-4 h-96">
-        <div className="flex space-x-1  text-xs md:text-base overflow-x-scroll pb-2">
+        <div className="flex space-x-1  text-xs md:text-base pb-2">
           {bottomContent === "포스터" && (
-            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
+            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-auto pb-2">
               {movieArr &&
                 movieArr.posters.map((poster) => (
-                  <div
-                    key={poster}
-                    className="whitespace-nowrap flex-shrink-0"
-                  >
+                  <div key={poster} className="whitespace-nowrap flex-shrink-0">
                     <img src={poster} className="w-full" />
                   </div>
                 ))}
@@ -185,10 +185,7 @@ const Detail = () => {
             <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
               {movieArr &&
                 movieArr.stlls.map((poster) => (
-                  <div
-                    key={poster}
-                    className="whitespace-nowrap flex-shrink-0"
-                  >
+                  <div key={poster} className="whitespace-nowrap flex-shrink-0">
                     <img src={poster} className="w-full" />
                   </div>
                 ))}

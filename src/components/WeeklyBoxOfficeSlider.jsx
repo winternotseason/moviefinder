@@ -18,7 +18,7 @@ const WeeklyBoxOfficeSlider = () => {
   }, []);
 
   if (loading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner color="#eeeeee"/>;
   }
   return <MovieSwiper movies={weeklyBoxOffice} />;
 };

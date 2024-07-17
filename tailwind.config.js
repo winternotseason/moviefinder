@@ -12,6 +12,9 @@ export default {
           to: { opacity: "1" },
         },
       },
+      transitionProperty: {
+        top: "top",
+      },
     },
   },
   plugins: [],

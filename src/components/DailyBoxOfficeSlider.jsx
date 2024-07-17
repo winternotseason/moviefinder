@@ -11,13 +11,14 @@ const DailyBoxOfficeSlider = () => {
       setLoading(true);
       const DailyBoxOffice = await getDailyBoxOffice();
       setDailyBoxOffice(DailyBoxOffice);
+      console.log(DailyBoxOffice)
       setLoading(false);
     };
 
     fetchDailyBoxOffice();
   }, []);
   if (loading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner color="#eeeeee"/>;
   }
   return <MovieSwiper movies={dailyBoxOffice} />;
 };

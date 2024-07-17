@@ -22,11 +22,12 @@ export default function MovieSwiper({ movies }) {
     "12세이상관람가": Twelve,
     "15세이상관람가": Fifteen,
     "15세관람가": Fifteen,
+    "고등학생가": Fifteen,
     전체관람가: All,
     "18세관람가(청소년관람불가)": Adult,
     청소년관람불가: Adult,
   };
-  console.log(movies);
+  
   return (
     <>
       <Swiper

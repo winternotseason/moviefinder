@@ -219,8 +219,8 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
     const rating = kmdb_arr.rating;
     const plots = kmdb_arr.plots.plot;
     const director = kmdb_arr.directors.director[0].directorNm;
-    const actors = kmdb_arr.actors.actor.slice(0,10)
-    const awards = kmdb_arr.Awards1.split("|")
+    const actors = kmdb_arr.actors.actor.slice(0, 10);
+    const awards = kmdb_arr.Awards1.split("|");
     return {
       title,
       posters,
@@ -235,9 +235,43 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
       plots,
       director,
       actors,
-      awards
+      awards,
     };
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getMovieListFromQuery = async (query) => {
+  try {
+    const res = await axios.get(
+      `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+        import.meta.env.VITE_KMDB_API_KEY
+      }&&title=${query}`
+    );
+    const kmdb_arr = res.data.Data[0].Result;
+    // 각각 결과들에는 영화이름, 포스터, 개봉날짜가 들어있어야함
+    const result = kmdb_arr.map((movie) => {
+      {
+        const beforeClearTitle = movie.title;
+        const title_remove_HS = beforeClearTitle.replace(/\s{1}!HS\s{1}/g, "");
+        const title_remove_HE = title_remove_HS.replace(/\s{1}!HE\s{1}/g, "");
+        const title = title_remove_HE.trim();
+        const poster = movie.posters.split("|")[0];
+        const releaseDate = movie.repRlsDate;
+        return { title, poster, releaseDate };
+      }
+    });
+    const resResult = result.filter(
+      (movie) => movie.title && movie.releaseDate
+    );
+    //const beforeClearTitle = kmdb_arr.title;
+    // 타이틀 정규표현식으로 깔끔하게 만들기
+    //const title_remove_HS = beforeClearTitle.replace(/\s{1}!HS\s{1}/g, "");
+    //const title_remove_HE = title_remove_HS.replace(/\s{1}!HE\s{1}/g, "");
+    //const title = title_remove_HE.trim();
+    return resResult;
+  } catch (err) {
+    console.error(err);
   }
 };
