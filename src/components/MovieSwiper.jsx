@@ -73,7 +73,7 @@ export default function MovieSwiper({ movies }) {
                 <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 bg-black/70 z-50 opacity-0 hover:opacity-100">
                   <Link
                     to={`/detail?moviename=${movie.movieNm}&release=${movie.repRlsDate}`}
-                    className="w-24 border-[1px] border-white/70 text-white/70 hover:border-white hover:text-white py-2 rounded-3xl cursor-pointer"
+                    className="w-16 text-xs border-[1px] border-white/70 text-white/70 hover:border-white hover:text-white p-2 rounded-3xl cursor-pointer"
                   >
                     상세보기
                   </Link>
