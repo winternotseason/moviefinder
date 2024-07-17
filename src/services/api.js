@@ -217,8 +217,9 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
     const genre = kmdb_arr.genre;
     const nation = kmdb_arr.nation;
     const rating = kmdb_arr.rating;
-    const plots = kmdb_arr.plots.plot
-
+    const plots = kmdb_arr.plots.plot;
+    const director = kmdb_arr.directors.director[0].directorNm;
+    const actors = kmdb_arr.actors.actor.slice(0,10)
     return {
       title,
       posters,
@@ -230,7 +231,9 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
       nation,
       rating,
       genre,
-      plots
+      plots,
+      director,
+      actors
     };
   } catch (error) {
     console.error(error);

@@ -16,6 +16,8 @@ const Detail = () => {
     company: "",
     title: "",
     plots: [{ plotText: "" }, { plotText: "" }],
+    director: "",
+    actors: [{ actorNm: "" }],
   });
   const [kr, setKr] = useState(true);
   const [topContent, setTopContent] = useState("기본소개");
@@ -32,7 +34,7 @@ const Detail = () => {
 
         console.log(res); // 데이터가 정상적으로 출력되는지 확인
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error(error);
       }
     };
 
@@ -62,16 +64,16 @@ const Detail = () => {
             <TopContentLi
               topContent={topContent}
               setTopContent={setTopContent}
-              link="수상내역"
-            >
-              수상내역
-            </TopContentLi>
-            <TopContentLi
-              topContent={topContent}
-              setTopContent={setTopContent}
               link="감독/출연"
             >
               감독/출연
+            </TopContentLi>{" "}
+            <TopContentLi
+              topContent={topContent}
+              setTopContent={setTopContent}
+              link="수상내역"
+            >
+              수상내역
             </TopContentLi>
           </ul>
         </div>
@@ -111,7 +113,26 @@ const Detail = () => {
               </p>
             </>
           )}{" "}
-          {topContent === "감독/출연" && <p>감독출연</p>}
+          {topContent === "감독/출연" && (
+            <div>
+              <div>
+                <p className="mb-1 font-semibold">감독</p>
+                <p className="text-sm">{movieArr.director}</p>
+              </div>
+              <div className="mt-5">
+                <p className="mb-1 font-semibold">출연</p>
+                <div className="flex space-x-1 w-full text-sm overflow-x-scroll">
+                  {movieArr.actors.map((actor, index) => (
+                    <p key={actor.actorNm} className="whitespace-nowrap">
+                      {actor.actorNm}
+                      {index < movieArr.actors.length - 1 && ", "}
+                    </p>
+                  ))}
+                  <p className="whitespace-nowrap"> 외</p>
+                </div>
+              </div>
+            </div>
+          )}
           {topContent === "수상내역" && <p>수상내역</p>}
         </div>
       </div>
