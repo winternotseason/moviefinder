@@ -220,6 +220,7 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
     const plots = kmdb_arr.plots.plot;
     const director = kmdb_arr.directors.director[0].directorNm;
     const actors = kmdb_arr.actors.actor.slice(0,10)
+    const awards = kmdb_arr.Awards1.split("|")
     return {
       title,
       posters,
@@ -233,7 +234,8 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
       genre,
       plots,
       director,
-      actors
+      actors,
+      awards
     };
   } catch (error) {
     console.error(error);

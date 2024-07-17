@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { getDetailMovieInfo } from "../services/api";
 import DetailPageHeader from "../components/DetailPageHeader";
 import TopContentLi from "../components/TopContentLi";
+import BottomContentLi from "../components/BottomContentLi";
 
 const Detail = () => {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [movieArr, setMovieArr] = useState({
-    posters: "",
+    posters: [],
     titleEng: "",
     releaseDate: "",
     runtime: "",
@@ -21,6 +22,7 @@ const Detail = () => {
   });
   const [kr, setKr] = useState(true);
   const [topContent, setTopContent] = useState("기본소개");
+  const [bottomContent, setBottomContent] = useState("포스터");
   const movieName = searchParams.get("moviename");
   const releaseDt = searchParams.get("release");
 
@@ -121,7 +123,7 @@ const Detail = () => {
               </div>
               <div className="mt-5">
                 <p className="mb-1 font-semibold text-xs md:text-base">출연</p>
-                <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll overflow-y-hidden pb-2">
+                <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
                   {movieArr.actors.map((actor, index) => (
                     <p key={actor.actorNm} className="whitespace-nowrap">
                       {actor.actorNm}
@@ -133,7 +135,65 @@ const Detail = () => {
               </div>
             </div>
           )}
-          {topContent === "수상내역" && <p>수상내역</p>}
+          {topContent === "수상내역" && (
+            <div className="text-sm md:text-base space-y-5 md:space-y-10 mt-2">
+              {movieArr.awards.length > 0 &&
+                movieArr.awards.map((award) => (
+                  <p
+                    className="pl-2 border-l-[1px] border-black/40 font-medium"
+                    key={award}
+                  >
+                    {award}
+                  </p>
+                ))}
+            </div>
+          )}
+        </div>
+      </div>
+      <ul className="w-full flex border-b-[1px] font-light">
+        <BottomContentLi
+          bottomContent={bottomContent}
+          setBottomContent={setBottomContent}
+          link={"포스터"}
+        >
+          포스터
+        </BottomContentLi>
+        <BottomContentLi
+          bottomContent={bottomContent}
+          setBottomContent={setBottomContent}
+          link={"스틸컷"}
+        >
+          스틸컷
+        </BottomContentLi>
+      </ul>
+      <div className="p-4 h-96">
+        <div className="flex space-x-1  text-xs md:text-base overflow-x-scroll pb-2">
+          {bottomContent === "포스터" && (
+            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
+              {movieArr &&
+                movieArr.posters.map((poster) => (
+                  <div
+                    key={poster}
+                    className="whitespace-nowrap flex-shrink-0"
+                  >
+                    <img src={poster} className="w-full" />
+                  </div>
+                ))}
+            </div>
+          )}
+          {bottomContent === "스틸컷" && (
+            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
+              {movieArr &&
+                movieArr.stlls.map((poster) => (
+                  <div
+                    key={poster}
+                    className="whitespace-nowrap flex-shrink-0"
+                  >
+                    <img src={poster} className="w-full" />
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
