@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 import { useState } from "react";
 import DailyBoxOfficeSlider from "../components/DailyBoxOfficeSlider";
 import WeeklyBoxOfficeSlider from "../components/WeeklyBoxOfficeSlider";
+import DetailLink from "../components/DetailLink";
 const Home = () => {
   const [movieEnd, setMovieEnd] = useState(false);
   const [onDaily, setOnDaily] = useState(true);
@@ -38,9 +39,7 @@ const Home = () => {
             <p className="text-[0.5rem] font-light md:text-sm mt-1 md:mt-2">
               장재헌 감독, 최민식, 김고은, 유해진, 이도헌 외
             </p>
-            <div className="mt-3 md:mt-5 border-[1px] rounded-3xl font-light text-xs md:text-sm flex w-16 md:w-24 h-6 md:h-8 justify-center items-center py-1 md:py-2 px-2 md:px-3 border-white/70 text-white/70 hover:border-white/90 hover:text-white/90 cursor-pointer">
-              <p className="-mt-[1px]">상세보기</p>
-            </div>
+            <DetailLink moviename="파묘" releaseDt="20240222" />
           </div>
           {movieEnd && (
             <img

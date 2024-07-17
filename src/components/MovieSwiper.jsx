@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import gradient from "/gradient-black.png";
 import Twelve from "/12.svg";
@@ -14,6 +14,7 @@ import "./styles.css";
 
 // import required modules
 import { Autoplay } from "swiper/modules";
+import DetailLink from "./DetailLink";
 
 export default function MovieSwiper({ movies }) {
   const ratingToSvg = {
@@ -71,12 +72,10 @@ export default function MovieSwiper({ movies }) {
                   예매율 {movie.booking_rate}%
                 </p>
                 <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 bg-black/70 z-50 opacity-0 hover:opacity-100">
-                  <Link
-                    to={`/detail?moviename=${movie.movieNm}&release=${movie.repRlsDate}`}
-                    className="w-16 text-xs border-[1px] border-white/70 text-white/70 hover:border-white hover:text-white p-2 rounded-3xl cursor-pointer"
-                  >
-                    상세보기
-                  </Link>
+                  <DetailLink
+                    moviename={movie.movieNm}
+                    releaseDt={movie.repRlsDate}
+                  />
                 </div>
               </div>
 
