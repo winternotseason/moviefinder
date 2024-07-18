@@ -152,45 +152,52 @@ const Detail = () => {
             </div>
           )}
         </div>
-      </div>
-      <ul className="w-full flex border-b-[1px] font-light">
-        <BottomContentLi
-          bottomContent={bottomContent}
-          setBottomContent={setBottomContent}
-          link={"포스터"}
-        >
-          포스터
-        </BottomContentLi>
-        <BottomContentLi
-          bottomContent={bottomContent}
-          setBottomContent={setBottomContent}
-          link={"스틸컷"}
-        >
-          스틸컷
-        </BottomContentLi>
-      </ul>
-      <div className="p-4 h-96">
-        <div className="flex space-x-1  text-xs md:text-base pb-2">
-          {bottomContent === "포스터" && (
-            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-auto pb-2">
-              {movieArr &&
-                movieArr.posters.map((poster) => (
-                  <div key={poster} className="whitespace-nowrap flex-shrink-0">
-                    <img src={poster} className="w-full" />
-                  </div>
-                ))}
-            </div>
-          )}
-          {bottomContent === "스틸컷" && (
-            <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
-              {movieArr &&
-                movieArr.stlls.map((poster) => (
-                  <div key={poster} className="whitespace-nowrap flex-shrink-0">
-                    <img src={poster} className="w-full" />
-                  </div>
-                ))}
-            </div>
-          )}
+
+        <ul className="w-full flex border-b-[1px] font-light">
+          <BottomContentLi
+            bottomContent={bottomContent}
+            setBottomContent={setBottomContent}
+            link={"포스터"}
+          >
+            포스터
+          </BottomContentLi>
+          <BottomContentLi
+            bottomContent={bottomContent}
+            setBottomContent={setBottomContent}
+            link={"스틸컷"}
+          >
+            스틸컷
+          </BottomContentLi>
+        </ul>
+        <div className="p-4 h-96">
+          <div className="flex space-x-1  text-xs md:text-base pb-2">
+            {bottomContent === "포스터" && (
+              <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-auto pb-2">
+                {movieArr &&
+                  movieArr.posters.map((poster) => (
+                    <div
+                      key={poster}
+                      className="whitespace-nowrap flex-shrink-0"
+                    >
+                      <img src={poster} className="w-full" />
+                    </div>
+                  ))}
+              </div>
+            )}
+            {bottomContent === "스틸컷" && (
+              <div className="flex space-x-1 w-full text-xs md:text-base overflow-x-scroll pb-2">
+                {movieArr &&
+                  movieArr.stlls.map((poster) => (
+                    <div
+                      key={poster}
+                      className="whitespace-nowrap flex-shrink-0"
+                    >
+                      <img src={poster} className="w-full" />
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

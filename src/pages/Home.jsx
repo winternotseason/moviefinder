@@ -10,7 +10,7 @@ const Home = () => {
   const [onDaily, setOnDaily] = useState(true);
   return (
     <div className="w-full h-full">
-      <div className="w-full flex flex-col justify-center items-center bg-black">
+      <div className="w-full flex flex-col justify-center items-center">
         <div className="relative w-full max-w-[90rem] min-w-[40rem]">
           <ReactPlayer
             url="/videos/mainvideo.mp4"
@@ -49,7 +49,7 @@ const Home = () => {
           )}
         </div>{" "}
         {/* 영화 슬라이더 */}
-        <div className="relative w-full p-5 max-w-[70rem] min-h-[30rem]">
+        <div className="relative w-full p-5 max-w-[70rem] min-h-[30rem] flex flex-col justify-center">
           <div className="flex  text-sm mb-5 font-semibold">
             <p
               className={`${

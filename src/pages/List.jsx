@@ -21,28 +21,28 @@ const List = () => {
   }
   console.log(movieList);
   return (
-    <div>
-      <div className="p-5">
-        <h1 className="font-medium">
+    <div className="w-full flex flex-col items-center">
+      <div className="p-5 md:p-10 max-w-[70rem]">
+        <h1 className="font-medium md:text-lg">
           영화 검색 결과{" "}
           <span className="font-bold text-red-500">{movieList.length}</span>건
         </h1>
-        <ul className="grid grid-cols-3 gap-x-2 mt-5">
+        <ul className="w-full grid grid-cols-3 gap-x-3 md:grid-cols-4 mt-5">
           {movieList.map((movie) => (
-            <li key={movie.title} className="flex flex-col items-center h-60">
+            <li key={movie.title} className="flex flex-col min-h-5">
               <Link
                 to={`/detail?moviename=${movie.title}&release=${movie.releaseDate}`}
               >
-                <div className="rounded-lg overflow-hidden">
+                <div className="w-full aspect-poster rounded-lg overflow-hidden">
                   {movie.poster === "" ? (
-                    <img src="/no_poster.png" className="w-full h-40" />
+                    <img src="/no_poster.png" className="w-full h-full" />
                   ) : (
-                    <img src={movie.poster} className="w-full h-40" />
+                    <img src={movie.poster} className="w-full h-full" />
                   )}
                 </div>
-                <div className="flex flex-col items-center mt-1 h-16">
-                  <p className="text-sm text-center">{movie.title}</p>
-                  <p className="text-xs text-black/50">
+                <div className="flex flex-col items-center mt-1 h-20 md:h-32 text-[0.7rem] md:text-lg">
+                  <p className="text-center">{movie.title}</p>
+                  <p className=" text-black/50">
                     {movie.releaseDate.slice(0, 4) +
                       "." +
                       movie.releaseDate.slice(4, 6) +
