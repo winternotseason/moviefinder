@@ -10,13 +10,13 @@ const Footer = ({isSearchPage}) => {
       <div className="text-white/70 w-full max-w-[70rem]">
         <div className="flex border-b-[1px] border-white/15 pb-5">
           <div>
-            <p className="mb-1 font-bold">Developer.</p>
-            <p className="font-light text-xs">Hwang Seoyeon</p>
+            <p className="text-sm md:text-lg mb-1 font-bold">Developer.</p>
+            <p className="font-light md:text-sm text-[0.6rem]">Hwang Seoyeon</p>
           </div>
           <div className="ml-14">
-            <p className="mb-1 font-bold">Data Source</p>
-            <p className="font-light text-xs">KMDB - 한국영화데이터베이스</p>
-            <p className="font-light text-xs">
+            <p className="md:text-lg mb-1 font-bold">Data Source</p>
+            <p className="font-light text-[0.6rem] md:text-sm">KMDB - 한국영화데이터베이스</p>
+            <p className="font-light text-[0.6rem] md:text-sm">
               KOBIS - 영화상영관입장권통합전산망
             </p>
           </div>
@@ -37,7 +37,7 @@ const Footer = ({isSearchPage}) => {
                 <div className="w-4">
                   <img src={github} />
                 </div>
-                <p className="ml-2 text-sm">Github</p>{" "}
+                <p className="ml-2 text-[0.6rem] md:text-sm">Github</p>{" "}
               </Link>
             </div>
             <div className="mt-2">
@@ -49,7 +49,7 @@ const Footer = ({isSearchPage}) => {
                 <div className="w-4">
                   <img src={kakao} />
                 </div>
-                <p className="ml-2 text-sm">Kakao</p>
+                <p className="ml-2 text-[0.6rem] md:text-sm">Kakao</p>
               </Link>
             </div>
           </div>
