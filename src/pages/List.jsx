@@ -2,6 +2,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovieListFromQuery } from "../services/api";
 import LoadingSpinner from "../components/Loading-Spinner";
+import SearchInput from "../components/SearchInput";
 const List = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams] = useSearchParams();
@@ -22,6 +23,7 @@ const List = () => {
   console.log(movieList);
   return (
     <div className="w-full flex flex-col items-center min-h-[60rem]">
+      <SearchInput />
       <div className="p-5 md:p-10 max-w-[70rem]">
         <h1 className="font-medium md:text-lg">
           영화 검색 결과{" "}

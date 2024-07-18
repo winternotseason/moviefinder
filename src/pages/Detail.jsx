@@ -47,7 +47,7 @@ const Detail = () => {
   }, [searchParams, movieName, releaseDt]);
 
   if (loading) {
-    return <LoadingSpinner color="#3c3c3c"/>;
+    return <LoadingSpinner color="#3c3c3c" />;
   }
 
   return (
