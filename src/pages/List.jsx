@@ -21,7 +21,7 @@ const List = () => {
   }
   console.log(movieList);
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center min-h-[60rem]">
       <div className="p-5 md:p-10 max-w-[70rem]">
         <h1 className="font-medium md:text-lg">
           영화 검색 결과{" "}
@@ -29,7 +29,7 @@ const List = () => {
         </h1>
         <ul className="w-full grid grid-cols-3 gap-x-3 md:grid-cols-4 mt-5">
           {movieList.map((movie) => (
-            <li key={movie.title} className="flex flex-col min-h-5">
+            <li key={movie.title} className="flex flex-col">
               <Link
                 to={`/detail?moviename=${movie.title}&release=${movie.releaseDate}`}
               >

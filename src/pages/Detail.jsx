@@ -4,6 +4,7 @@ import { getDetailMovieInfo } from "../services/api";
 import DetailPageHeader from "../components/DetailPageHeader";
 import TopContentLi from "../components/TopContentLi";
 import BottomContentLi from "../components/BottomContentLi";
+import LoadingSpinner from "../components/Loading-Spinner";
 
 const Detail = () => {
   const [searchParams] = useSearchParams();
@@ -46,14 +47,14 @@ const Detail = () => {
   }, [searchParams, movieName, releaseDt]);
 
   if (loading) {
-    return <h1>로딩중</h1>;
+    return <LoadingSpinner color="#3c3c3c"/>;
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center bg-white">
       {/* 헤더 */}
       <DetailPageHeader movieArr={movieArr} />
-      <div className="w-full md:max-w-[70rem]">
+      <div className="w-full md:max-w-[70rem] ">
         <div>
           <ul className="w-full flex border-b-[1px] font-light">
             <TopContentLi

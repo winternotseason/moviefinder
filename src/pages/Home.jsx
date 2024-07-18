@@ -72,7 +72,9 @@ const Home = () => {
               주간
             </p>
           </div>
-          {onDaily ? <DailyBoxOfficeSlider /> : <WeeklyBoxOfficeSlider />}
+          <div className="min-h-96">
+            {onDaily ? <DailyBoxOfficeSlider /> : <WeeklyBoxOfficeSlider />}
+          </div>
         </div>
       </div>
     </div>

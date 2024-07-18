@@ -13,7 +13,7 @@ export default {
           to: { opacity: "1" },
         },
       },
-      aspectRatio: { poster: "1/1.3" },
+      aspectRatio: { poster: "1/1.4" },
       transitionProperty: {
         top: "top",
       },
