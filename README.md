@@ -2,7 +2,7 @@
   
 ## ✍️ 개요
 
-- 📄 프로젝트 명: MINE
+- 📄 프로젝트 명: MOVIEFINDER
 - 🔨 도구: React, Javascript, Tailwind CSS
 - 👩🏻‍💻 개발자: 황서연 (개인개발)
 
