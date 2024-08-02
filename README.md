@@ -1,4 +1,4 @@
-## #MINE 
+## MOVIEFINDER
   
 ## ✍️ 개요
 
