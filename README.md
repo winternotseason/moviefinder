@@ -1,5 +1,6 @@
 ## MOVIEFINDER
-  
+  ![무제(1)](https://github.com/user-attachments/assets/d2bb52f0-9950-4fb7-aed2-46723f6ec86c)
+- 일간/주간 영화 차트와 영화명 검색을 통해 등장인물, 줄거리, 스틸컷 등 영화의 세부 정보를 제공하는 영화 정보 사이트 입니다.
 ## ✍️ 개요
 
 - 📄 프로젝트 명: MOVIEFINDER
@@ -10,7 +11,7 @@
    
 ## 💾 배포 주소
 
-[https://mine-community-w.vercel.app/](https://mine-community-w.vercel.app/)
+[https://moviefinder-lilac.vercel.app/](https://moviefinder-lilac.vercel.app/)
 
 
    
