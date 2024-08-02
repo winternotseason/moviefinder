@@ -25,11 +25,9 @@
 ![npm](https://img.shields.io/badge/npm-CB3837?style=flat-square&logo=npm&logoColor=white)
 
 ### Development
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![NextJS](https://img.shields.io/badge/NextJS-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![MongoDB](https://img.shields.io/badge/Mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![CSS Modules](https://img.shields.io/badge/CSS%20Modules-000000?style=flat-square&logo=cssmodules&logoColor=white)
-![Zustand](https://img.shields.io/badge/zustand-5B4524?style=flat-square&logo=&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white)
+![Javascript](https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 
 
 ## 🔑 주요 기능
@@ -51,11 +49,20 @@ KMDB와 KOBIS API를 통해 얻은 데이터를 기반으로 영화의 세부 �
 - Tailwind CSS를 이용하여 다양한 디바이스에서 최적화된 반응형 웹사이트를 구현하였습니다.
 
 
-## 🔑 페이지 별 기능
-**[메인]**
-**[세부 영화]**
-**[영화 검색]**
-**[검색 결과]**
+## 💻 Getting Started
+### Installation
+   ```
+   npm install 
+   ```
+### Develop Mode
+   ```
+   npm run dev 
+   ```
+### Production
+   ```
+   npm run build 
+   ```
+
 
    
 
