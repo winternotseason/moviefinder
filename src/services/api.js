@@ -93,10 +93,8 @@ export const getDailyBoxOffice = async () => {
 
     const requests = kobis_data.map(async (movie) => {
       const response = await axios.get(
-        `https://cors.bridged.cc/https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
-          import.meta.env.VITE_KMDB_API_KEY
-        }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
-      ,);
+        `https://movie-api-seven-chi.vercel.app/api?releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
+      );
       return response;
     });
 
