@@ -31,7 +31,7 @@ const Header = () => {
                 e.preventDefault();
                 navigate(`/search/list?query=${query}`);
                 setQuery("");
-                console.log(query);
+                // console.log(query);
               }}
             >
               <input

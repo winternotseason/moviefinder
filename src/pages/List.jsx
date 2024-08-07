@@ -20,7 +20,7 @@ const List = () => {
   if (loading) {
     return <LoadingSpinner color="#eeeeee" />;
   }
-  console.log(movieList);
+  // console.log(movieList);
   return (
     <div className="w-full flex flex-col items-center min-h-[60rem]">
       <SearchInput />

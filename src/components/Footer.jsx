@@ -14,7 +14,7 @@ const Footer = ({isSearchPage}) => {
             <p className="font-light md:text-sm text-[0.6rem]">Hwang Seoyeon</p>
           </div>
           <div className="ml-14">
-            <p className="md:text-lg mb-1 font-bold">Data Source</p>
+            <p className="text-sm md:text-lg mb-1 font-bold">Data Source</p>
             <p className="font-light text-[0.6rem] md:text-sm">KMDB - 한국영화데이터베이스</p>
             <p className="font-light text-[0.6rem] md:text-sm">
               KOBIS - 영화상영관입장권통합전산망

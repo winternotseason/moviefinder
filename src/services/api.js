@@ -90,14 +90,13 @@ export const getDailyBoxOffice = async () => {
         booking_rate: movie.salesShare,
       };
     });
-    console.log("?", kobis_arr);
 
     const requests = kobis_data.map(async (movie) => {
       const response = await axios.get(
-        `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
+        `https://cors.bridged.cc/https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
           import.meta.env.VITE_KMDB_API_KEY
         }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
-      );
+      ,);
       return response;
     });
 
@@ -128,7 +127,7 @@ export const getDailyBoxOffice = async () => {
         booking_rate: kobis.booking_rate,
       };
     });
-    console.log("왜?", boxOfficeArr);
+    
     return boxOfficeArr;
   } catch (err) {
     console.error(err);
@@ -147,7 +146,7 @@ export const getWeeklyBoxOffice = async () => {
         booking_rate: movie.salesShare,
       };
     });
-    console.log("?", kobis_arr);
+
 
     const requests = kobis_data.map(async (movie) => {
       const response = await axios.get(
@@ -185,7 +184,7 @@ export const getWeeklyBoxOffice = async () => {
         booking_rate: kobis.booking_rate,
       };
     });
-    console.log("왜?", boxOfficeArr);
+
     return boxOfficeArr;
   } catch (err) {
     console.error(err);
@@ -194,7 +193,7 @@ export const getWeeklyBoxOffice = async () => {
 };
 
 export const getDetailMovieInfo = async (movieMame, releaseDt) => {
-  console.log(movieMame, releaseDt);
+
   // 영화이름과 개봉일을 받아서 영화 정보들을 불러온다.
   try {
     const res = await axios.get(

@@ -35,7 +35,7 @@ const Detail = () => {
         setMovieArr(res);
         setLoading(false);
 
-        console.log(res); // 데이터가 정상적으로 출력되는지 확인
+        // console.log(res); // 데이터가 정상적으로 출력되는지 확인
       } catch (error) {
         console.error(error);
       }
