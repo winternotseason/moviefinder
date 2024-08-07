@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const DetailLink = ({moviename,releaseDt}) => {
+  // console.log(moviename, releaseDt)
   return (
     <Link
       to={`/detail?moviename=${moviename}&release=${releaseDt}`}

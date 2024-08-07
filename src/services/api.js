@@ -132,7 +132,7 @@ export const getDailyBoxOffice = async () => {
         booking_rate: kobis.booking_rate,
       };
     });
-
+    
     return boxOfficeArr;
   } catch (err) {
     console.error(err);
@@ -214,7 +214,7 @@ export const getDetailMovieInfo = async (movieName, releaseDt) => {
       )}&title=${movieName.replace(regExp, "")}`
     );
 
-    const kmdb_arr = res.Data[0].Result[0];
+    const kmdb_arr = res.data.Data[0].Result[0];
     const beforeClearTitle = kmdb_arr.title;
     // 타이틀 정규표현식으로 깔끔하게 만들기
     const title_remove_HS = beforeClearTitle.replace(/\s{1}!HS\s{1}/g, "");
