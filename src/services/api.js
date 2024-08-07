@@ -92,9 +92,16 @@ export const getDailyBoxOffice = async () => {
     });
 
     const requests = kobis_data.map(async (movie) => {
+      // eslint-disable-next-line
+      const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+
       const response = await axios.get(
-        `https://movie-api-seven-chi.vercel.app/api?releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
+        `https://movie-api-seven-chi.vercel.app/api?releaseDts=${movie.openDt.replace(
+          /-/g,
+          ""
+        )}&query=${movie.movieNm.replace(regExp, "")}`
       );
+
       return response;
     });
 
@@ -125,7 +132,7 @@ export const getDailyBoxOffice = async () => {
         booking_rate: kobis.booking_rate,
       };
     });
-    
+
     return boxOfficeArr;
   } catch (err) {
     console.error(err);
@@ -145,16 +152,19 @@ export const getWeeklyBoxOffice = async () => {
       };
     });
 
-
     const requests = kobis_data.map(async (movie) => {
+      // eslint-disable-next-line
+      const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+
       const response = await axios.get(
-        `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
-          import.meta.env.VITE_KMDB_API_KEY
-        }&releaseDts=${movie.openDt.replace(/-/g, "")}&query=${movie.movieNm}`
+        `https://movie-api-seven-chi.vercel.app/api?releaseDts=${movie.openDt.replace(
+          /-/g,
+          ""
+        )}&query=${movie.movieNm.replace(regExp, "")}`
       );
+
       return response;
     });
-
     const response = await Promise.all(requests);
     const resArr = response.map((res) => res.data.Data[0].Result[0]);
 
@@ -190,16 +200,21 @@ export const getWeeklyBoxOffice = async () => {
   return;
 };
 
-export const getDetailMovieInfo = async (movieMame, releaseDt) => {
-
+export const getDetailMovieInfo = async (movieName, releaseDt) => {
   // 영화이름과 개봉일을 받아서 영화 정보들을 불러온다.
   try {
+    // vercel/api/detail
+    // eslint-disable-next-line
+    const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+
     const res = await axios.get(
-      `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
-        import.meta.env.VITE_KMDB_API_KEY
-      }&releaseDts=${releaseDt}&title=${movieMame}`
+      `https://movie-api-seven-chi.vercel.app/api/detail?releaseDts=${releaseDt.replace(
+        /-/g,
+        ""
+      )}&title=${movieName.replace(regExp, "")}`
     );
-    const kmdb_arr = res.data.Data[0].Result[0];
+
+    const kmdb_arr = res.Data[0].Result[0];
     const beforeClearTitle = kmdb_arr.title;
     // 타이틀 정규표현식으로 깔끔하게 만들기
     const title_remove_HS = beforeClearTitle.replace(/\s{1}!HS\s{1}/g, "");
@@ -241,11 +256,14 @@ export const getDetailMovieInfo = async (movieMame, releaseDt) => {
 
 export const getMovieListFromQuery = async (query) => {
   try {
+    // vercel/api/detail
+    // eslint-disable-next-line
+    const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+
     const res = await axios.get(
-      `//api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&ServiceKey=${
-        import.meta.env.VITE_KMDB_API_KEY
-      }&&title=${query}`
+      `https://movie-api-seven-chi.vercel.app/api/search?title=${query}`
     );
+
     const kmdb_arr = res.data.Data[0].Result;
     // 각각 결과들에는 영화이름, 포스터, 개봉날짜가 들어있어야함
     const result = kmdb_arr.map((movie) => {
